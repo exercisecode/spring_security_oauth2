@@ -1,4 +1,20 @@
 
 
 server:
-  port: 20001
+    port: 20001
+  
+  
+security:
+    base: 
+        enabled: false
+        path: /**
+    #user:
+        #name: lidongxu
+        #password: lidongxu
+        #role: USER
+    oauth2:
+        resource:
+            id: demo2016
+            service-id: demo201605
+            token-type: authorizationCodeService
+            token-info-uri: http://127.0.0.1:20001/hello
