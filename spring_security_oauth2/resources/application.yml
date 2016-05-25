@@ -8,11 +8,16 @@ security:
     base: 
         enabled: false
         path: /**
-    #user:
-        #name: lidongxu
-        #password: lidongxu
+    user:
+        name: username
+        password: 20161001
         #role: USER
     oauth2:
+        authorization:
+            checkTokenAccess=isAuthenticated()
+        client:
+            client-id: myclient
+            client-secret: democlient
         resource:
             id: demo2016
             service-id: demo201605
