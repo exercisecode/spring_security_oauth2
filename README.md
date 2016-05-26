@@ -31,6 +31,9 @@ https://github.com/spring-projects/spring-boot/tree/v1.3.5.RELEASE/spring-boot-s
 
 https://github.com/spring-projects/spring-security-oauth/blob/master/docs/oauth2.md  
 
+JdbcTokenStore  
+http://blog.csdn.net/monkeyking1987/article/details/16828059  
+
 
 
 
@@ -81,11 +84,24 @@ $ curl myclient:democlient@127.0.0.1:20001/oauth/token -d grant_type=password -d
 
 
 $ curl 127.0.0.1:20001/oauth/token -d "grant_type=password&scope=rw&username=username&password=20161001" -u myclient:democlient
-{"access_token":"7c1e7888-7300-4caa-97f2-54bbf55034cc","token_type":"bearer","refresh_token":"c3bc1113-2dc8-4f8c-a6b9-91d57dafb565","expires_in":37936,"scope":"rw"}
+{"access_token":"78ebadfb-c402-4dc4-90c3-cedb1b64a243","token_type":"bearer","refresh_token":"23eda1da-398e-4062-97b7-6983969852e1","expires_in":43199,"scope":"rw"}
 
 
-$ curl -H "Authorization: bearer 7c1e7888-7300-4caa-97f2-54bbf55034cc" 127.0.0.1:20001/hello?username=World
+$ curl -H "Authorization: bearer 78ebadfb-c402-4dc4-90c3-cedb1b64a243" 127.0.0.1:20001/hello?username=World
 {"message":"success","username":"World","returnMessage":" Hello , World"}
+
+
+
+{"timestamp":1464234013845,"status":401,"error":"Unauthorized","message":"Error creating bean with name 'scopedTarget.clientDetailsService' defined in class path resource [org/springframework/security/oauth2/config/annotation/configuration/ClientDetailsServiceConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.oauth2.provider.ClientDetailsService]: Factory method 'clientDetailsService' threw exception; nested exception is java.lang.UnsupportedOperationException: Cannot build client services (maybe use inMemory() or jdbc()).","path":"/oauth/token"}
+
+
+
+{"timestamp":1464246768830,"status":401,"error":"Unauthorized","message":"PreparedStatementCallback; bad SQL grammar [select username,password,enabled from users where username = ?]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test_oauth2.users' doesn't exist","path":"/oauth/token"}
+
+
+
+jdbcAuthentication()  
+http://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#user-schema  
 
 
 

@@ -21,7 +21,9 @@ public class SpringOAuthMain {
 		
 		System.out.println("\n\n\n");
 		for(String beanName : configContext.getBeanDefinitionNames()){
-			System.out.println("\t " + beanName);
+			if(beanName.indexOf("toekn") >= 0 || beanName.indexOf("Token") >= 0){
+			   System.out.println("\t " + beanName);
+			}
 		}
 		
 		System.out.println("\n\n beanCount= " + configContext.getBeanDefinitionCount());
