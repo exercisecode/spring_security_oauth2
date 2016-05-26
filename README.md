@@ -12,6 +12,7 @@ http://projects.spring.io/spring-security-oauth/
 
 http://projects.spring.io/spring-security-oauth/docs/oauth2.html  
 
+http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#preface
 
 https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
 
@@ -26,6 +27,12 @@ https://github.com/spring-projects/spring-boot/tree/v1.3.5.RELEASE/spring-boot-s
 https://github.com/spring-projects/spring-boot/tree/v1.3.5.RELEASE/spring-boot-samples/spring-boot-sample-secure-oauth2  
 
 https://github.com/spring-projects/spring-boot/tree/v1.3.5.RELEASE/spring-boot-samples/spring-boot-sample-secure-oauth2-resource  
+
+
+https://github.com/spring-projects/spring-security-oauth/blob/master/docs/oauth2.md  
+
+
+
 
 
 AuthorizationEndpoint  /oauth/authorize  
@@ -71,6 +78,15 @@ $ curl myclient:democlient@127.0.0.1:20001/oauth/token -d grant_type=password -d
 
 $ curl myclient:democlient@127.0.0.1:20001/oauth/token -d grant_type=password -d username=username -d password=20161001
 {"error":"invalid_scope","error_description":"Empty scope (either the client or the user is not allowed the requested scopes)"}
+
+
+$ curl 127.0.0.1:20001/oauth/token -d "grant_type=password&scope=rw&username=username&password=20161001" -u myclient:democlient
+{"access_token":"7c1e7888-7300-4caa-97f2-54bbf55034cc","token_type":"bearer","refresh_token":"c3bc1113-2dc8-4f8c-a6b9-91d57dafb565","expires_in":37936,"scope":"rw"}
+
+
+$ curl -H "Authorization: bearer 7c1e7888-7300-4caa-97f2-54bbf55034cc" 127.0.0.1:20001/hello?username=World
+{"message":"success","username":"World","returnMessage":" Hello , World"}
+
 
 
 

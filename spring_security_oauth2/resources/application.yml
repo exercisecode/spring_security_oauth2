@@ -23,3 +23,14 @@ security:
             service-id: demo201605
             token-type: authorizationCodeService
             token-info-uri: http://127.0.0.1:20001/hello
+            
+spring:
+    datasource:
+        test-while-idle: true
+        test-on-connect: true
+        validation-query: select 1
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/test_oauth2?useUnicode=true&characterEncoding=utf8
+        username: demo
+        password: demo
+                    
